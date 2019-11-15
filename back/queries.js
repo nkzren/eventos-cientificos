@@ -2,7 +2,6 @@ const { pool } = require('./config')
 
 
 const getNameCountByEvent = (request, response) => {
-    let mock = "Renan"
     pool.query(`SELECT * FROM eventos.`)
 }
 
