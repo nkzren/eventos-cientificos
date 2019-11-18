@@ -11,7 +11,7 @@ const getNameCountByEvent = (request, response) => {
     (error, results) => {
         if (error) {
             console.error(error)
-            response.status(500)
+            throw error
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -39,7 +39,7 @@ const getLocationsWithNParticipants = (request, response) => {
     (error, results) => {
         if (error) {
             console.error(error)
-            response.status(500)
+            throw error
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -59,7 +59,7 @@ const getCertificateCountByParticipant = (request, response) => {
         (error, results) => {
             if (error) {
                 console.error(error)
-                response.status(500)
+                throw error
             } else {
                 response.write(JSON.stringify(results.rows))
             }
@@ -77,7 +77,7 @@ const getSponsorsMoreThanOneEvent = (request, response) => {
     (error, results) => {
         if (error) {
             console.error(error)
-            response.status(500)
+            throw error
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -96,7 +96,7 @@ const getParticipantsThreeStates = (request, response) => {
     (error, results) => {
         if (error) {
             console.error(error)
-            response.status(500)
+            throw error
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -114,7 +114,7 @@ const getEntitiesPromoteAndSponsor = (request, response) => {
     (error, results) => {
         if (error) {
             console.error(error)
-            response.status(500)
+            throw error
         } else {
             response.write(JSON.stringify(results.rows))
         }
