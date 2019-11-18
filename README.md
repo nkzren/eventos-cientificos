@@ -1,5 +1,5 @@
 # eventos-cientificos
-EP de Banco de Dados 2019/2
+Exercício-Programa de Banco de Dados 2019/2º Semestre
 
 ## Requirements
   - [Node.js](https://nodejs.org/en/)
