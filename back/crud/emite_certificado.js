@@ -1,5 +1,4 @@
 const { pool } = require('../config')
-const { buildQuerySet } = require('../utils')
 
 const fetchByEvent = (request, response) => {
     pool.query(`
