@@ -1,0 +1,14 @@
+-- 6. Listar entidades que simultaneamente promovam e patrocinam um algum evento
+
+select * from entidade as patrocinador
+join patrocina on
+	patrocina.cnp_corpo = patrocinador.cnp_corpo
+	and patrocina.cnp_filial = patrocinador.cnp_filial
+	and patrocina.cnp_controle = patrocinador.cnp_controle
+join promove_evento on
+	promove_evento.edicao = patrocina.edicao
+	and promove_evento.nome = patrocina.nome
+join entidade as entidade_promotora on
+	entidade_promotora.cnp_corpo = promove_evento.cnp_corpo
+	and entidade_promotora.cnp_filial = promove_evento.cnp_filial
+	and entidade_promotora.cnp_controle = promove_evento.cnp_controle;
