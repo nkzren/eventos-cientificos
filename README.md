@@ -16,7 +16,7 @@ Exercício-Programa de Banco de Dados 2019/2º Semestre
   
   2. Run the following command line:
   ```
-    cd path/to/eventos-cientificos && npm i
+    cd path/to/eventos-cientificos && npm i 
   ```
 
 ## Starting the Application
