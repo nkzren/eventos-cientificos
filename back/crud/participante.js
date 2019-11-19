@@ -7,6 +7,7 @@ const fetchByName = (request, response) => {
             console.error(error)
             throw error
         } else {
+            response.status(results.rows.length ? 200 : 204)
             response.write(JSON.stringify(results.rows))
         }
         response.end()
@@ -17,12 +18,13 @@ const insert = (request, response) => {
     pool.query(`
         INSERT INTO eventos.participante(
         cpf_corpo, cpf_controle, nome, cidade_origem)
-        VALUES (${request.query.cpf.substring(0, 9)}, ${request.query.cpf.substring(9, 11)}, ${request.query.nome}, ${request.query.cidade_origem});
+        VALUES ('${request.query.cpf.substring(0, 9)}', '${request.query.cpf.substring(9, 11)}', '${request.query.nome}', '${request.query.cidade_origem}');
     `, (error, results) => {
         if (error) {
             console.error(error)
-            throw error
+            response.status(400)
         } else {
+            response.status(201)
             response.write(JSON.stringify(results.rows))
         }
         response.end()
@@ -33,11 +35,11 @@ const update = (request, response) => {
     pool.query(`
         UPDATE eventos.participante
         SET ${buildQuerySet(request.query)}
-        WHERE edicao = ${request.params.edicao} AND nome = ${request.params.nome};
+        WHERE cpf_corpo='${request.params.cpf.substring(0, 9) || 0}';
     `, (error, results) => {
         if (error) {
             console.error(error)
-            throw error
+            response.status(500)
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -47,8 +49,8 @@ const update = (request, response) => {
 
 const remove = (request, response) => {
     pool.query(`
-        DELETE FROM eventos.participante;
-        WHERE cpf_corpo = '${request.query.cpf.substring(0, 9)}'
+        DELETE FROM eventos.participante
+        WHERE cpf_corpo='${request.params.cpf.substring(0, 9) || 0}'
     `, (error, results) => {
         if (error) {
             console.error(error)

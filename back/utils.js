@@ -6,7 +6,7 @@
 const buildQuerySet = (queryObj) => {
     let keys = Object.keys(queryObj)
     return keys.reduce((result, e, i) => {
-        return `${result},${e}=${queryObj[e]}`
+        return `${result},${e}='${queryObj[e]}'`
     }, '').slice(1)
 }
 

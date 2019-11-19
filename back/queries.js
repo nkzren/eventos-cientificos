@@ -5,7 +5,7 @@ const { pool } = require('./config')
  */
 const getNameCountByEvent = (request, response) => {
     pool.query(`
-        SELECT * FROM eventos.participantes p
+        SELECT * FROM eventos.participante p
         WHERE p.nome LIKE '${request.query.name}%'
     `,
     (error, results) => {
