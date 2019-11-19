@@ -1,0 +1,30 @@
+version: '3.1'
+
+services:
+  web:
+    build: .
+    ports:
+      - 80:3002
+    depends_on:
+      - db
+    environment:
+      DB_USER: bd2019
+      DB_PASSWORD: each2019#
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: eventos_cientificos
+  db:
+    image: postgres:alpine
+    restart: always
+    environment:
+      POSTGRES_USER: bd2019
+      POSTGRES_PASSWORD: each2019#
+      POSTGRES_DB: eventos_cientificos
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+ postgres:
