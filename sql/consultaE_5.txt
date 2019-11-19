@@ -1,0 +1,7 @@
+-- 5. Listar todos os concursos e seus respectivos juízes
+
+select cc.tema, pt.nome
+from eventos.concurso cc
+join eventos.julga jg on (cc.codigo_da_atividade = jg.codigo_da_atividade)
+join eventos.juiz jz on (jz.cpf_corpo = jg.cpf_corpo and jz.cpf_controle = jg.cpf_controle)
+join eventos.participante pt on (pt.cpf_corpo = jz.cpf_corpo and pt.cpf_controle = jz.cpf_controle)

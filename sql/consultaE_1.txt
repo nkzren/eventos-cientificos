@@ -1,0 +1,6 @@
+-- 1. Listar o número de participantes com nome começando com "João" em cada evento.
+
+select count(*) from eventos.participante 
+join eventos.inscricao i using (cpf_corpo, cpf_controle)
+join eventos.evento e on (e.nome = i.nome and e.edicao = i.edicao)
+where e.nome like 'João%'
