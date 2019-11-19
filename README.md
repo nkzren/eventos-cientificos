@@ -11,6 +11,7 @@ Exercício-Programa de Banco de Dados 2019/2º Semestre
   DB_PASSWORD=pass
   DB_HOST=host
   DB_PORT=5432
+  DB_DATABASE=database_name
   ```
   
   2. Run the following command line:

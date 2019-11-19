@@ -11,7 +11,7 @@ const getNameCountByEvent = (request, response) => {
     (error, results) => {
         if (error) {
             console.error(error)
-            throw error
+            response.status(500)
         } else {
             response.write(JSON.stringify(results.rows))
         }
