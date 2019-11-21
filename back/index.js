@@ -3,6 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const query = require('./queries')
 const participante = require('./crud/participante') 
+const evento = require('./crud/evento')
 
 const app = express()
 
@@ -28,6 +29,12 @@ app.route('/participante/:cpf')
   .delete(participante.remove)
 
 app.route('/evento')
+  .post(evento.insert)
+  .get(evento.fetchByDate)
+
+app.route('/evento/:nome/:edicao')
+  .put(evento.update)
+  .delete(evento.remove)
 
 app.route('/emite_certificado')
 

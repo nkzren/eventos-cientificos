@@ -48,7 +48,7 @@ const update = (request, response) => {
 const remove = (request, response) => {
     pool.query(`
         DELETE FROM eventos.evento
-        WHERE edicao = '${request.query.edicao}' AND nome = '${request.query.nome}'
+        WHERE edicao = '${request.params.edicao}' AND nome = '${request.params.nome}'
     `, (error, results) => {
         if (error) {
             console.error(error)
