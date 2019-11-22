@@ -6,8 +6,8 @@ const fetchByEvent = (request, response) => {
         WHERE edicao=${request.query.edicao} AND nome=${request.query.nome}
     `, (error, results) => {
         if (error) {
-            console.error(error)
-            throw error
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -21,8 +21,8 @@ const fetchByType = (request, response) => {
         GROUP BY tipo ORDER BY tipo
     `, (error, results) => {
         if (error) {
-            console.error(error)
-            throw error
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -32,18 +32,18 @@ const fetchByType = (request, response) => {
 
 const insert = (request, response) => {
     pool.query(`
-        INSERT INTO eventos.certificado(numero, tipo)
-        VALUES (${request.query.numero}, ${request.query.tipo});
+        INSERT INTO eventos.certificado(tipo)
+        VALUES ('${request.query.tipo}');
 
         INSERT INTO eventos.emite_certificado(
-        numero, data_de_emissao, cpf_corpo, cpf_controle, nome, edicao)
-        VALUES(${request.query.numero}, '${request.query.data_de_emissao}', ${request.query.cpf.substring(0,9)}, '${request.query.cpf.substring(9,11)}', '${request.query.nome}', ${request.query.edicao})
+        cpf_corpo, cpf_controle, nome, edicao)
+        VALUES(${request.query.cpf.substring(0, 9)}, '${request.query.cpf.substring(9, 11)}', '${request.query.nome}', ${request.query.edicao})
     `, (error, results) => {
         if (error) {
-            console.error(error)
-            throw error
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
-            response.write(JSON.stringify(results.rows))
+            response.write(JSON.stringify(results))
         }
         response.end()
     })
@@ -51,14 +51,14 @@ const insert = (request, response) => {
 
 const remove = (request, response) => {
     pool.query(`
-        DELETE FROM eventos.emite_certificado WHERE numero=${request.query.numero}
-        DELETE FROM eventos.certificado WHERE numero=${request.query.numero}
+    DELETE FROM eventos.emite_certificado WHERE numero=${request.params.numero};
+    DELETE FROM eventos.certificado WHERE numero=${request.params.numero};
     `, (error, results) => {
         if (error) {
-            console.error(error)
-            throw error
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
-            response.write(JSON.stringify(results.rows))
+            response.write(JSON.stringify(results))
         }
         response.end()
     })
@@ -66,7 +66,6 @@ const remove = (request, response) => {
 
 module.exports = {
     insert,
-    update,
     remove,
     fetchByEvent,
     fetchByType,

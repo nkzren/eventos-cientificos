@@ -4,8 +4,8 @@ const { buildQuerySet } = require('../utils')
 const fetchByDate = (request, response) => {
     pool.query(`SELECT * FROM eventos.evento ORDER BY data_hora_inicio`, (error, results) => {
         if (error) {
-            console.error(error)
-            throw error
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -20,8 +20,8 @@ const insert = (request, response) => {
         VALUES (${request.query.nome}, ${request.query.edicao}, ${request.query.tema}, ${request.query.data_hora_inicio}, ${request.query.data_hora_fim}, ${request.query.id_local});
     `, (error, results) => {
         if (error) {
-            console.error(error)
-            throw error
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -36,8 +36,8 @@ const update = (request, response) => {
         WHERE edicao = ${request.params.edicao} AND nome = ${request.params.nome};
     `, (error, results) => {
         if (error) {
-            console.error(error)
-            throw error
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -51,8 +51,8 @@ const remove = (request, response) => {
         WHERE edicao = '${request.params.edicao}' AND nome = '${request.params.nome}'
     `, (error, results) => {
         if (error) {
-            console.error(error)
-            throw error
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
             response.write(JSON.stringify(results.rows))
         }

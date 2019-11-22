@@ -4,8 +4,8 @@ const { buildQuerySet } = require('../utils')
 const fetchByName = (request, response) => {
     pool.query(`SELECT * FROM eventos.participante ORDER BY nome`, (error, results) => {
         if (error) {
-            console.error(error)
-            throw error
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
             response.status(results.rows.length ? 200 : 204)
             response.write(JSON.stringify(results.rows))
@@ -21,8 +21,8 @@ const insert = (request, response) => {
         VALUES ('${request.query.cpf.substring(0, 9)}', '${request.query.cpf.substring(9, 11)}', '${request.query.nome}', '${request.query.cidade_origem}');
     `, (error, results) => {
         if (error) {
-            console.error(error)
             response.status(400)
+            response.write(JSON.stringify(error))
         } else {
             response.status(201)
             response.write(JSON.stringify(results.rows))
@@ -38,8 +38,8 @@ const update = (request, response) => {
         WHERE cpf_corpo='${request.params.cpf.substring(0, 9) || 0}';
     `, (error, results) => {
         if (error) {
-            console.error(error)
-            response.status(500)
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
             response.write(JSON.stringify(results.rows))
         }
@@ -53,8 +53,8 @@ const remove = (request, response) => {
         WHERE cpf_corpo='${request.params.cpf.substring(0, 9) || 0}'
     `, (error, results) => {
         if (error) {
-            console.error(error)
-            throw error
+            response.status(400)
+            response.write(JSON.stringify(error))
         } else {
             response.write(JSON.stringify(results.rows))
         }

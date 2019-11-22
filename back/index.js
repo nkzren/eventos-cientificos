@@ -4,6 +4,7 @@ const cors = require('cors')
 const query = require('./queries')
 const participante = require('./crud/participante') 
 const evento = require('./crud/evento')
+const certificado = require('./crud/emite_certificado')
 
 const app = express()
 
@@ -37,6 +38,16 @@ app.route('/evento/:nome/:edicao')
   .delete(evento.remove)
 
 app.route('/emite_certificado')
+  .post(certificado.insert)
+
+app.route('/emite_certificado/type')
+  .get(certificado.fetchByType)
+
+app.route('emite_certificado/event')
+  .get(certificado.fetchByEvent)
+
+app.route('/emite_certificado/:numero')
+  .delete(certificado.remove)
 
 app.listen(process.env.PORT || 3002, () => {
   console.log(`Server listening on port ${process.env.PORT || 3002}...`)
