@@ -13,7 +13,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "concurrently \"node back/index.js \" \"cd front && npm start\""
+    "start": "concurrently \"node back/index.js \" \"cd front && ng serve\""
   },
   "keywords": [],
   "author": "",
