@@ -3,7 +3,7 @@ const { pool } = require('../config')
 const fetchByEvent = (request, response) => {
     pool.query(`
         SELECT * FROM eventos.emite_certificado
-        WHERE edicao='${request.query.edicao}' AND nome='${request.query.nome}'
+        WHERE edicao=${request.query.edicao} AND nome=${request.query.nome}
     `, (error, results) => {
         if (error) {
             response.status(400)
@@ -51,8 +51,8 @@ const insert = (request, response) => {
 
 const remove = (request, response) => {
     pool.query(`
-        DELETE FROM eventos.emite_certificado WHERE numero=${request.params.numero};
-        DELETE FROM eventos.certificado WHERE numero=${request.params.numero};
+    DELETE FROM eventos.emite_certificado WHERE numero=${request.params.numero};
+    DELETE FROM eventos.certificado WHERE numero=${request.params.numero};
     `, (error, results) => {
         if (error) {
             response.status(400)
