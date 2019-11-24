@@ -21,7 +21,7 @@ Exercício-Programa de Banco de Dados 2019/2º Semestre
 
 ## Starting the Application
   ```
-    npm start
+    npm run start
   ```
   
 ## Accessing the Application
