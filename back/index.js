@@ -21,32 +21,32 @@ app.route('/sponsorMultEvt').get(query.getSponsorsMoreThanOneEvent)
 app.route('/part3States').get(query.getParticipantsThreeStates)
 app.route('/entPromSpons').get(query.getEntitiesPromoteAndSponsor)
 
-app.route('/participante')
+app.route('/participantes')
   .post(participante.insert)
   .get(participante.fetchByName)
 
-app.route('/participante/:cpf')
+app.route('/participantes/:cpf')
   .put(participante.update)
   .delete(participante.remove)
 
-app.route('/evento')
+app.route('/eventos')
   .post(evento.insert)
   .get(evento.fetchByDate)
 
-app.route('/evento/:nome/:edicao')
+app.route('/eventos/:nome/:edicao')
   .put(evento.update)
   .delete(evento.remove)
 
 app.route('/emite_certificado')
   .post(certificado.insert)
 
-app.route('/emite_certificado/type')
+app.route('/emite-certificado/type')
   .get(certificado.fetchByType)
 
-app.route('emite_certificado/event')
+app.route('emite-certificado/event')
   .get(certificado.fetchByEvent)
 
-app.route('/emite_certificado/:numero')
+app.route('/emite-certificado/:numero')
   .delete(certificado.remove)
 
 app.listen(process.env.PORT || 3002, () => {
