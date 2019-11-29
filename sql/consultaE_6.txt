@@ -1,6 +1,5 @@
 -- 6. Listar entidades que simultaneamente promovam e patrocinam um algum evento
 
-
 SELECT * FROM eventos.entidade AS patrocinador
 NATURAL JOIN eventos.patrocina
 WHERE patrocinador.cnp_corpo = ANY (

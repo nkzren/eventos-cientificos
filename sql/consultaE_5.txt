@@ -5,4 +5,4 @@ FROM eventos.concurso cc
 JOIN eventos.julga jg ON (cc.codigo_da_atividade = jg.codigo_da_atividade)
 JOIN eventos.juiz jz ON (jz.cpf_corpo = jg.cpf_corpo AND jz.cpf_controle = jg.cpf_controle)
 JOIN eventos.participante pt ON (pt.cpf_corpo = jz.cpf_corpo AND pt.cpf_controle = jz.cpf_controle)
-JOIN eventos.atividade atv ON (cc.codigo_da_atividade=atv.codigo_da_atividade)
+JOIN eventos.atividade atv ON (cc.codigo_da_atividade=atv.codigo_da_atividade) ORDER BY atv.nome
