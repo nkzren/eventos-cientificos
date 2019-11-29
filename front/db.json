@@ -71,6 +71,12 @@
       "nome": "Teste",
       "cpf": "1234567897",
       "cidade_origem": "Sp"
+    },
+    {
+      "id": 9,
+      "nome": "teste",
+      "cpf": "1234567897",
+      "cidade_origem": "Sp"
     }
   ],
   "eventos": [
