@@ -83,4 +83,5 @@ module.exports = {
     remove,
     fetchByEvent,
     fetchByType,
+    fetchAll,
 }
