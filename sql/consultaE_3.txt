@@ -1,6 +1,6 @@
 -- 3. Listar os participantes e a quantidade de certificados que cada um possui
 
-select cpf_corpo, cpf_controle, p.nome, count(numero)
-from participante p
-left join emite_certificado using (cpf_controle, cpf_corpo)
-group by cpf_corpo, cpf_controle;
+SELECT cpf_corpo, cpf_controle, p.nome, COUNT(numero)
+FROM eventos.participante p
+LEFT JOIN eventos.emite_certificado USING (cpf_controle, cpf_corpo)
+GROUP BY cpf_corpo, cpf_controle ORDER BY COUNT DESC;

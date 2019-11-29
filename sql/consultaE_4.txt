@@ -1,12 +1,7 @@
--- 4. Listar os eventos que possuam mais de 100 participantes
+-- 4. Listar os eventos que possuam mais de N participantes
 
-select *
-from eventos.local l
-having count(
-	select *
-	from eventos.participante p
-	join eventos.inscricao i using (cpf_corpo, cpf_controle)
-	join eventos.evento e on (e.nome = i.nome and e.edicao = i.edicao)
-	where e.id_local = l.id_local
-	group by e.nome, e.edicao
-) >= 100;
+SELECT e.nome, e.edicao, COUNT(n_inscricao)
+FROM eventos.participante
+JOIN eventos.inscricao i USING (cpf_corpo, cpf_controle)
+JOIN eventos.evento e ON (e.nome = i.nome AND e.edicao = i.edicao)
+GROUP BY e.nome, e.edicao HAVING COUNT(n_inscricao) >= 5

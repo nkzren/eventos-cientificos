@@ -1,9 +1,8 @@
 -- 2. Selecionar o evento com o menor valor de taxa de patrocínio
 
-select *
-from eventos.evento ev
-join eventos.patrocina pt on (ev.nome = pt.nome and ev.edicao = pt.edicao)
-join eventos.taxa_de_patrocinio tx on (tx.id_taxa = pt.id_taxa)
-where tx.valor_minimo <= all (
-	select valor_minimo
-	from eventos.taxa_de_patrocinio);
+SELECT *
+FROM eventos.evento ev
+JOIN eventos.taxa_de_patrocinio tx ON (ev.nome=tx.nome AND ev.edicao=tx.edicao)
+WHERE tx.valor_minimo <= ALL (
+	SELECT valor_minimo
+	FROM eventos.taxa_de_patrocinio);
