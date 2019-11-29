@@ -13,7 +13,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "concurrently \"node back/index.js \" \"cd front && ng serve\""
+    "dev": "concurrently \"node back/index.js \" \"cd front && ng serve\"",
+    "start": "concurrently \"node back/index.js \" \"cd front && npx lite-server --baseDir=\"dist/requests-http\"\""
   },
   "keywords": [],
   "author": "",

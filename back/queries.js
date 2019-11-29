@@ -55,7 +55,7 @@ const getCertificateCountByParticipant = (request, response) => {
         `SELECT cpf_corpo, cpf_controle, p.nome, count(numero)
         FROM eventos.participante p 
         LEFT JOIN eventos.emite_certificado using (cpf_controle, cpf_corpo)
-        GROUP BY cpf_corpo, cpf_controle`,
+        GROUP BY cpf_corpo, cpf_controle ORDER BY count DESC`,
         (error, results) => {
             if (error) {
                 console.error(error)

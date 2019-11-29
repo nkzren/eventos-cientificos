@@ -3,7 +3,7 @@ const { pool } = require('../config')
 const fetchByEvent = (request, response) => {
     pool.query(`
         SELECT * FROM eventos.emite_certificado
-        WHERE edicao=${request.query.edicao} AND nome='${request.query.nome}'
+        WHERE edicao=${request.body.edicao} AND nome='${request.body.nome}'
     `, (error, results) => {
         if (error) {
             response.status(400)
@@ -33,11 +33,11 @@ const fetchByType = (request, response) => {
 const insert = (request, response) => {
     pool.query(`
         INSERT INTO eventos.certificado(tipo)
-        VALUES ('${request.query.tipo}');
+        VALUES ('${request.body.tipo}');
 
         INSERT INTO eventos.emite_certificado(
         cpf_corpo, cpf_controle, nome, edicao)
-        VALUES(${request.query.cpf.substring(0, 9)}, '${request.query.cpf.substring(9, 11)}', '${request.query.nome}', ${request.query.edicao})
+        VALUES(${request.body.cpf.substring(0, 9)}, '${request.body.cpf.substring(9, 11)}', '${request.body.nome}', ${request.body.edicao})
     `, (error, results) => {
         if (error) {
             response.status(400)

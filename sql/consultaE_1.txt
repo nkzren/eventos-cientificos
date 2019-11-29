@@ -1,6 +1,10 @@
--- 1. Listar o número de participantes com nome começando com "João" em cada evento.
+-- 1. Listar os eventos que apresentaram uma sessão de artigo do tipo 'Arduino'
 
-select count(*) from eventos.participante 
-join eventos.inscricao i using (cpf_corpo, cpf_controle)
-join eventos.evento e on (e.nome = i.nome and e.edicao = i.edicao)
-where e.nome like 'João%'
+SELECT evt.*
+FROM eventos.atividade atv
+INNER JOIN eventos.evento evt ON (evt.nome=atv.pos_nome AND evt.edicao=atv.pos_edicao AND atv.sessao_de_artigo=1)
+WHERE codigo_da_atividade IN (
+	SELECT sessao.codigo_da_atividade
+	FROM eventos.artigo artigo NATURAL JOIN eventos.apresentado_em, eventos.sessao_de_artigo sessao
+	WHERE artigo.tipo LIKE '%Arduino%'
+)

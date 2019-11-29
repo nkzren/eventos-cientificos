@@ -21,6 +21,18 @@ app.route('/sponsorMultEvt').get(query.getSponsorsMoreThanOneEvent)
 app.route('/part3States').get(query.getParticipantsThreeStates)
 app.route('/entPromSpons').get(query.getEntitiesPromoteAndSponsor)
 
+app.route('/local').get((request, response) => {
+  pool.query(`SELECT id_local, nome FROM eventos.local ORDER BY nome`, (error, results) => {
+      if (error) {
+          response.status(400)
+          response.write(JSON.stringify(error))
+      } else {
+          response.write(JSON.stringify(results.rows))
+      }
+      response.end()
+  })
+})
+
 app.route('/participantes')
   .post(participante.insert)
   .get(participante.fetchByName)
@@ -37,7 +49,7 @@ app.route('/eventos/:nome/:edicao')
   .put(evento.update)
   .delete(evento.remove)
 
-app.route('/emite_certificado')
+app.route('/emite-certificado')
   .post(certificado.insert)
 
 app.route('/emite-certificado/type')

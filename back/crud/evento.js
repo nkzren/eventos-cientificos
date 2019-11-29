@@ -17,7 +17,7 @@ const insert = (request, response) => {
     pool.query(`
         INSERT INTO eventos.evento(
         nome, edicao, tema, data_hora_inicio, data_hora_fim, id_local)
-        VALUES ('${request.query.nome}', ${request.query.edicao}, '${request.query.tema}', '${request.query.data_hora_inicio}', '${request.query.data_hora_fim}', ${request.query.id_local});
+        VALUES ('${request.body.nome}', ${request.body.edicao}, '${request.body.tema}', '${request.body.data_hora_inicio}', '${request.body.data_hora_fim}', ${request.body.id_local});
     `, (error, results) => {
         if (error) {
             response.status(400)
@@ -32,7 +32,7 @@ const insert = (request, response) => {
 const update = (request, response) => {
     pool.query(`
         UPDATE eventos.evento
-        SET ${buildQuerySet(request.query)}
+        SET ${buildQuerySet(request.body)}
         WHERE edicao = ${request.params.edicao} AND nome='${request.params.nome}';
     `, (error, results) => {
         if (error) {

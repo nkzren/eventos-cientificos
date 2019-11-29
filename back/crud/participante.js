@@ -18,7 +18,7 @@ const insert = (request, response) => {
     pool.query(`
         INSERT INTO eventos.participante(
         cpf_corpo, cpf_controle, nome, cidade_origem)
-        VALUES ('${request.query.cpf.substring(0, 9)}', '${request.query.cpf.substring(9, 11)}', '${request.query.nome}', '${request.query.cidade_origem}');
+        VALUES ('${request.body.cpf.substring(0, 9)}', '${request.body.cpf.substring(9, 11)}', '${request.body.nome}', '${request.body.cidade_origem}');
     `, (error, results) => {
         if (error) {
             response.status(400)
@@ -34,7 +34,7 @@ const insert = (request, response) => {
 const update = (request, response) => {
     pool.query(`
         UPDATE eventos.participante
-        SET ${buildQuerySet(request.query)}
+        SET ${buildQuerySet(request.body)}
         WHERE cpf_corpo='${request.params.cpf.substring(0, 9) || 0}';
     `, (error, results) => {
         if (error) {
