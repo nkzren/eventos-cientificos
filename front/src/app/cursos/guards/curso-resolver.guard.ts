@@ -17,7 +17,17 @@ export class CursoResolverGuard implements Resolve<Curso> {
 
     return of({
       id: null,
-      nome: null
+      nome: null,
+      cpf: null,
+      cidade_origem: null,
+
+      tema: null,
+      edicao: null,
+      data_hora_inicio: null,
+      data_hora_fim: null,
+      id_local: null,
+
+      tipo: null,
     });
   }
 }

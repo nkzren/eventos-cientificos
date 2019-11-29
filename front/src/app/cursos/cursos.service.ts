@@ -14,11 +14,7 @@ export class CursosService {
   constructor(private http: HttpClient) { }
 
   list() {
-    return this.http.get<Curso[]>(this.API)
-      .pipe(
-        delay(2000),
-        tap(console.log)
-      );
+    return this.http.get<Curso[]>(this.API);
   }
 
   loadByID(id) {

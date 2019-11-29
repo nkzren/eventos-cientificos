@@ -29,7 +29,12 @@ export class EventosFormComponent implements OnInit {
 
     this.form = this.fb.group({
       id: [evento.id],
-      nome: [evento.nome, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]]
+      nome: [evento.nome, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],
+      tema: [evento.tema],
+      edicao: [evento.edicao],
+      data_hora_inicio: [evento.data_hora_inicio],
+      data_hora_fim: [evento.data_hora_fim],
+      id_local: [evento.id_local],
     });
   }
 
@@ -63,5 +68,6 @@ export class EventosFormComponent implements OnInit {
   onCancel() {
     this.submitted = false;
     this.form.reset();
+    this.location.back();
   }
 }

@@ -18,8 +18,8 @@ const routes: Routes = [
     loadChildren: () => import('./eventos/eventos.module').then(m => m.EventosModule)
   },
   {
-    path: 'emite-certificado',
-    loadChildren: () => import('./emite-certificado/emite-certificado.module').then(m => m.EmiteCertificadoModule)
+    path: 'certificados',
+    loadChildren: () => import('./certificados/certificados.module').then(m => m.CertificadosModule)
   },
 ];
 

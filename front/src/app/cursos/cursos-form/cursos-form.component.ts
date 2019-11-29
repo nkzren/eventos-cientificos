@@ -58,16 +58,19 @@ export class CursosFormComponent implements OnInit {
 
     this.form = this.fb.group({
       id: [curso.id],
-      nome: [curso.nome, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]]
+      nome: [curso.nome, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],
+      cpf: [curso.cpf, [Validators.required, Validators.minLength(9), Validators.maxLength(12)]],
+      cidade_origem: [curso.cidade_origem, [Validators.maxLength(42)]],
+
+      tema: [curso.tema],
+      edicao: [curso.edicao],
+      data_hora_inicio: [curso.data_hora_inicio],
+      data_hora_fim: [curso.data_hora_fim],
+      id_local: [curso.id_local],
+
+      tipo: [curso.tipo],
     });
   }
-
-  // updateForm(curso) {
-  //   this.form.patchValue({
-  //     id: curso.id,
-  //     nome: curso.nome
-  //   });
-  // }
 
   hasError(field: string) {
     return this.form.get(field).errors;
@@ -120,6 +123,6 @@ export class CursosFormComponent implements OnInit {
   onCancel() {
     this.submitted = false;
     this.form.reset();
-    // console.log('onCancel');
+    this.location.back();
   }
 }

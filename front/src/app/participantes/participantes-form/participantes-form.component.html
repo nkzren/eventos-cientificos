@@ -20,6 +20,42 @@
           Nome precisa ter no máximo {{ hasError('nome')['maxlength'].requiredLength }} caracteres.
         </div>
       </div>
+      
+      <div class="col-sm-4" style="margin: 10px;margin-right: 4em;">
+          <label for="nome">CPF</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cpf"
+            placeholder="CPF"
+            formControlName="cpf"
+            [ngClass]="{ 'is-invalid': submitted && hasError('cpf')}"
+          />
+          <div class="invalid-feedback" *ngIf="hasError('cpf') && hasError('cpf')['required']" >
+            Por favor informe um CPF.
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('cpf') && hasError('cpf')['minlength']" >
+            CPF precisa ter no mínimo {{ hasError('cpf')['minlength'].requiredLength }} caracteres.
+          </div>
+          <div class="invalid-feedback" *ngIf="hasError('cpf') && hasError('cpf')['maxlength']" >
+            CPF precisa ter no máximo {{ hasError('cpf')['maxlength'].requiredLength }} caracteres.
+          </div>
+        </div>
+    
+        <div class="col-sm-7" style="margin-top: 10px;">
+          <label for="cidade_origem">Cidade de origem</label>
+          <input
+            type="text"
+            class="form-control"
+            id="cidade_origem"
+            placeholder="Cidade"
+            formControlName="cidade_origem"
+            [ngClass]="{ 'is-invalid': submitted && hasError('cidade_origem')}"
+          />
+          <div class="invalid-feedback" *ngIf="hasError('cidade_origem') && hasError('cidade_origem')['maxlength']" >
+            Cidade de origem precisa ter no máximo {{ hasError('cidade_origem')['maxlength'].requiredLength }} caracteres.
+          </div>
+        </div>
     </div>
     <div style="margin-top: 10px">
       <button type="sumit" class="btn btn-primary" (click)="onSubmit()">Salvar</button>

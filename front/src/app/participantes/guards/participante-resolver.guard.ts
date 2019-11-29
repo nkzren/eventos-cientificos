@@ -17,7 +17,9 @@ export class ParticipanteResolverGuard implements Resolve<Participante> {
 
     return of({
       id: null,
-      nome: null
+      nome: null,
+      cpf: null,
+      cidade_origem: null,
     });
   }
 }

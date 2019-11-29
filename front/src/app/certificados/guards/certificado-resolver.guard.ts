@@ -1,28 +1,26 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Resolve } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { Evento } from '../evento';
-import { EventosService } from '../eventos.service';
+import { Certificado } from '../certificado';
+import { CertificadosService } from '../certificados.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class EventoResolverGuard implements Resolve<Evento> {
-  constructor(private service: EventosService) {}
+export class CertificadoResolverGuard implements Resolve<Certificado> {
+  constructor(private service: CertificadosService) {}
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Evento> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Certificado> {
     if (route.params && route.params['id']) {
       return this.service.loadByID(route.params['id']);
     }
 
     return of({
       id: null,
+      cpf: null,
       nome: null,
-      tema: null,
       edicao: null,
-      data_hora_inicio: null,
-      data_hora_fim: null,
-      id_local: null,
+      tipo: null,
     });
   }
 }
