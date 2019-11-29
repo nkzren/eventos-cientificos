@@ -1,7 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
-const query = require('./queries')
 const participante = require('./crud/participante') 
 const evento = require('./crud/evento')
 const certificado = require('./crud/emite_certificado')
@@ -13,13 +12,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }))
 app.use(cors())
-
-app.route('/nameByEvt').get(query.getNameCountByEvent)
-app.route('/locByPartCount').get(query.getLocationsWithNParticipants)
-app.route('/certByPart').get(query.getCertificateCountByParticipant)
-app.route('/sponsorMultEvt').get(query.getSponsorsMoreThanOneEvent)
-app.route('/part3States').get(query.getParticipantsThreeStates)
-app.route('/entPromSpons').get(query.getEntitiesPromoteAndSponsor)
 
 app.route('/local').get((request, response) => {
   pool.query(`SELECT id_local, nome FROM eventos.local ORDER BY nome`, (error, results) => {

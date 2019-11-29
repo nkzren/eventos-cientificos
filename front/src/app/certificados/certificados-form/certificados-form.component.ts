@@ -30,7 +30,8 @@ export class CertificadosFormComponent implements OnInit {
     this.form = this.fb.group({
       id: [certificado.id],
       nome: [certificado.nome, [Validators.required, Validators.minLength(3), Validators.maxLength(250)]],cpf: [certificado.cpf, [Validators.required, Validators.minLength(9), Validators.maxLength(12)]],
-      cidade_origem: [certificado.cidade_origem, [Validators.maxLength(42)]]
+      edicao: [certificado.edicao],
+      tipo: [certificado.tipo],
     });
   }
 
