@@ -1,5 +1,19 @@
 const { pool } = require('../config')
 
+const fetchAll = (request, response) => {
+    pool.query(`
+        SELECT * FROM eventos.emite_certificado
+    `, (error, results) => {
+        if (error) {
+            response.status(400)
+            response.write(JSON.stringify(error))
+        } else {
+            response.write(JSON.stringify(results.rows))
+        }
+        response.end()
+    })
+}
+
 const fetchByEvent = (request, response) => {
     pool.query(`
         SELECT * FROM eventos.emite_certificado

@@ -41,16 +41,17 @@ app.route('/eventos/:nome/:edicao')
   .put(evento.update)
   .delete(evento.remove)
 
-app.route('/emite-certificado')
+app.route('/certificados')
   .post(certificado.insert)
+  .get(certificado.fetchAll)
 
-app.route('/emite-certificado/type')
+app.route('/certificados/type')
   .get(certificado.fetchByType)
 
-app.route('emite-certificado/event')
+app.route('/certificados/event')
   .get(certificado.fetchByEvent)
 
-app.route('/emite-certificado/:numero')
+app.route('/certificados/:numero')
   .delete(certificado.remove)
 
 app.listen(process.env.PORT || 3002, () => {
